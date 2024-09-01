@@ -1,0 +1,33 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+require 'rubygems'
+
+lib_dir = File.expand_path(File.join(File.dirname(__FILE__), '..', 'lib'))
+$LOAD_PATH << lib_dir unless $LOAD_PATH.include?(lib_dir)
+
+if File.exist?('.env.development')
+  # This loads our development environment when running dev.
+  require 'dotenv'
+  Dotenv.load('.env.development')
+end
+
+require 'todo'
+
+if Todo.env.development?
+  # This simply allows us to use a folder other than todo folder for the production
+  # release, so we don't mess with our current production todo folder.
+  module Todo
+    module Support
+      module Fileable
+        def root_folder
+          File.join(gem_dir, '.development_home')
+        end
+      end
+    end
+  end
+
+  puts "ATTENTION: Todo root folder is: #{Todo::Support::Fileable.root_folder}!"
+end
+
+Todo::CLI.start(ARGV)

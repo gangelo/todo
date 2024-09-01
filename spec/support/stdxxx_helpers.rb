@@ -12,10 +12,10 @@ module StdxxxHelpers
   end
 
   def capture_stdout_and_strip_escapes(&block)
-    strip_escapes(Dsu::Services::StdoutRedirectorService.call(&block).chomp)
+    strip_escapes(Todo::Services::StdoutRedirectorService.call(&block).chomp)
   end
 
   def capture_stderr_and_strip_escapes(&block)
-    strip_escapes(Dsu::Services::StderrRedirectorService.call(&block).chomp)
+    strip_escapes(Todo::Services::StderrRedirectorService.call(&block).chomp)
   end
 end

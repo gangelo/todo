@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
 FactoryBot.define do
-  factory :project, class: 'Dsu::Models::Project' do
+  factory :project, class: 'Todo::Models::Project' do
     project_name { 'default' }
     description { nil }
     options { {} }
-    version { Dsu::Migration::VERSION }
+    version { Todo::Migration::VERSION }
 
     initialize_with do
       new(project_name: project_name, description: description, version: version, options: options)

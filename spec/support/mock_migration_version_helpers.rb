@@ -5,19 +5,19 @@
 
 module MockMigrationVersionHepers
   def mock_migration_version_for(version:)
-    remove_mock_dsu_folder_and_configuration
+    remove_mock_todo_folder_and_configuration
 
-    create_mock_dsu_folder_for(version)
-    create_mock_dsu_configuration_for(version)
+    create_mock_todo_folder_for(version)
+    create_mock_todo_configuration_for(version)
     create_migration_version_for_if(version)
   end
 
-  def dsu_folders_and_file_contents_match?(expected:, actual:, known_deleted_files: [], known_added_files: [])
-    expected_files = dsu_folder_contents(expected)
-    actual_files = dsu_folder_contents(actual)
+  def todo_folders_and_file_contents_match?(expected:, actual:, known_deleted_files: [], known_added_files: [])
+    expected_files = todo_folder_contents(expected)
+    actual_files = todo_folder_contents(actual)
 
-    puts "\ndsu_folder_contents(expected)->\n#{expected_files.join("\n")}"
-    puts "\n\ndsu_folder_contents(actual)->\n#{actual_files.join("\n")}"
+    puts "\ntodo_folder_contents(expected)->\n#{expected_files.join("\n")}"
+    puts "\n\ntodo_folder_contents(actual)->\n#{actual_files.join("\n")}"
     puts "\n\nKnown deleted actual files->\n#{known_deleted_files.join("\n")}"
     puts "\n\nKnown added expeccted files->\n#{known_added_files.join("\n")}"
 
@@ -58,7 +58,7 @@ module MockMigrationVersionHepers
     JSON.parse(File.read(expected_file)) == JSON.parse(File.read(actual_file))
   end
 
-  def dsu_folder_contents(folder, exclude_files = [])
+  def todo_folder_contents(folder, exclude_files = [])
     exclude_files << '.DS_Store'
     root_path = Pathname.new(folder)
     contents = []
@@ -77,28 +77,28 @@ module MockMigrationVersionHepers
     contents.sort
   end
 
-  def create_mock_dsu_folder_for(migration_version)
+  def create_mock_todo_folder_for(migration_version)
     File.join('spec', 'fixtures', 'folders', migration_version.to_s).tap do |source_folder|
-      destination_folder = File.join(temp_folder, 'dsu')
+      destination_folder = File.join(temp_folder, 'todo')
       FileUtils.mkdir_p(destination_folder)
       FileUtils.cp_r(File.join(source_folder, '.'), destination_folder)
     end
   end
 
-  def create_mock_dsu_configuration_for(migration_version)
+  def create_mock_todo_configuration_for(migration_version)
     ext = migration_version.zero? ? 'yaml' : 'json'
     source_file = File.join('spec', 'fixtures', 'files', 'configurations', "#{migration_version}.#{ext}")
-    FileUtils.cp(source_file, File.join(temp_folder, '.dsu'))
+    FileUtils.cp(source_file, File.join(temp_folder, '.todo'))
   end
 
   def create_migration_version_for_if(version)
     create(:migration_version, version: version) unless version.zero?
   end
 
-  def remove_mock_dsu_folder_and_configuration
-    FileUtils.rm_rf(File.join(temp_folder, 'dsu'))
-    FileUtils.rm_rf(File.join(temp_folder, '.dsu'))
-    Dir.glob(File.join(temp_folder, 'dsu-*-backup')).each do |backup_folder|
+  def remove_mock_todo_folder_and_configuration
+    FileUtils.rm_rf(File.join(temp_folder, 'todo'))
+    FileUtils.rm_rf(File.join(temp_folder, '.todo'))
+    Dir.glob(File.join(temp_folder, 'todo-*-backup')).each do |backup_folder|
       FileUtils.rm_rf(backup_folder)
     end
   end

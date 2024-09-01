@@ -1,4 +1,4 @@
-# lib/dsu/cli.rb
+# lib/todo/cli.rb
 #
 # NOTE:
 #
@@ -26,27 +26,27 @@ en:
     add:
       key_mappings: a
       desc: add|a [OPTIONS] DESCRIPTION
-      usage: Adds a DSU entry having DESCRIPTION to the date associated with the given OPTION
+      usage: Adds a TODO entry having DESCRIPTION to the date associated with the given OPTION
       long_desc: |
-        Will add a DSU entry having DESCRIPTION to the date associated with the given OPTION.
+        Will add a TODO entry having DESCRIPTION to the date associated with the given OPTION.
 
-        $ dsu add [-d DATE|MNEMONIC|-n|-t|-y] DESCRIPTION
+        $ todo add [-d DATE|MNEMONIC|-n|-t|-y] DESCRIPTION
 
-        $ dsu a [-d DATE|MNEMONIC|-n|-t|-y] DESCRIPTION
+        $ todo a [-d DATE|MNEMONIC|-n|-t|-y] DESCRIPTION
 
         OPTIONS:
 
-        -d DATE|MNEMONIC: Adds a DSU entry having DESCRIPTION to the DATE or date referenced by the MNEMONIC.
+        -d DATE|MNEMONIC: Adds a TODO entry having DESCRIPTION to the DATE or date referenced by the MNEMONIC.
 
         %{date_option_description}
 
         %{mnemonic_option_description}
 
-        -n: Adds a DSU entry having DESCRIPTION to today's date (`Time.now`).
+        -n: Adds a TODO entry having DESCRIPTION to today's date (`Time.now`).
 
-        -t: Adds a DSU entry having DESCRIPTION to tomorrow's date (`Time.new.tomorrow`).
+        -t: Adds a TODO entry having DESCRIPTION to tomorrow's date (`Time.new.tomorrow`).
 
-        -y: Adds a DSU entry having DESCRIPTION to yesterday's date (`Time.new.yesterday`).
+        -y: Adds a TODO entry having DESCRIPTION to yesterday's date (`Time.new.yesterday`).
 
         DESCRIPTION
 
@@ -54,7 +54,7 @@ en:
     browse:
       key_mappings: b
       desc: browse|b SUBCOMMAND
-      usage: Browse DSU entries by the given SUBCOMMAND
+      usage: Browse TODO entries by the given SUBCOMMAND
     config:
       key_mappings: c
       desc: config|c SUBCOMMAND
@@ -62,27 +62,27 @@ en:
     delete:
       key_mappings: d
       desc: delete|d SUBCOMMAND
-      usage: Delete DSU entries for the given SUBCOMMAND
+      usage: Delete TODO entries for the given SUBCOMMAND
     edit:
       desc: edit|e SUBCOMMAND
-      usage: Edit DSU entries for the given SUBCOMMAND
+      usage: Edit TODO entries for the given SUBCOMMAND
       key_mappings: e
     export:
       key_mappings: x
       desc: export|x SUBCOMMAND
-      usage: Export DSU entries for the given SUBCOMMAND
+      usage: Export TODO entries for the given SUBCOMMAND
     import:
       key_mappings: m
       desc: import|m SUBCOMMAND
-      usage: Imports DSU entries for the given SUBCOMMAND
+      usage: Imports TODO entries for the given SUBCOMMAND
     info:
       key_mappings: i
       desc: info|i
-      usage: Displays information about this DSU release
+      usage: Displays information about this TODO release
       info: |
-        Dsu Info
+        Todo Info
         --------------------------------------------------
-                      Dsu version: %{dsu_version}
+                      Todo version: %{todo_version}
             Configuration version: %{configuration_version}
               Entry group version: %{entry_group_version}
               Color theme version: %{color_theme_version}
@@ -99,21 +99,21 @@ en:
     list:
       key_mappings: l
       desc: list|l SUBCOMMAND
-      usage: Displays DSU entries for the given SUBCOMMAND
+      usage: Displays TODO entries for the given SUBCOMMAND
     project:
       key_mappings: p
       desc: project|p SUBCOMMAND
-      usage: Manage DSU projects for the given SUBCOMMAND
+      usage: Manage TODO projects for the given SUBCOMMAND
     theme:
       key_mappings: t
       desc: theme|t SUBCOMMAND
-      usage: Manage DSU themes
+      usage: Manage TODO themes
     version:
       key_mappings:
         - v
         - '-v'
       desc: version|v|-v
-      usage: Displays the DSU version for this gem
+      usage: Displays the TODO version for this gem
   # Should these options go under their respective commands
   # (e.g. commands.options.date.name, commands.options.today.aliases, etc.)?
   options:
@@ -133,7 +133,7 @@ en:
     yesterday:
       aliases: -y
       name: 'yesterday'
-    include_all: Include dates that have no DSU entries
+    include_all: Include dates that have no TODO entries
     date_option_description: |
       DATE
 

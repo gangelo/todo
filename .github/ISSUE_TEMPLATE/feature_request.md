@@ -1,7 +1,7 @@
 ---
-name: dsu feature request
-about: Suggest an idea for dsu
-title: "[ENHANCEMENT] dsu: I think it would be cool if dsu..."
+name: todo feature request
+about: Suggest an idea for todo
+title: "[ENHANCEMENT] todo: I think it would be cool if todo..."
 labels: 'feature-request'
 assignees: 'gangelo'
 

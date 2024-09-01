@@ -1,16 +1,16 @@
 # frozen_string_literal: true
 
 FactoryBot.define do
-  factory :migration_version, class: 'Dsu::Models::MigrationVersion' do
+  factory :migration_version, class: 'Todo::Models::MigrationVersion' do
     version { nil }
     options { {} }
 
     trait :with_current_version do
-      version { Dsu::Migration::VERSION }
+      version { Todo::Migration::VERSION }
     end
 
     initialize_with do
-      Dsu::Models::MigrationVersion.new(version: version, options: options)
+      Todo::Models::MigrationVersion.new(version: version, options: options)
     end
 
     after(:create) do |migration_version, _evaluator|

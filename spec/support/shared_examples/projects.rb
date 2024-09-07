@@ -13,7 +13,7 @@ shared_examples 'the project exists' do
 end
 
 shared_examples 'the project is the default project' do
-  let(:default_project_name) { Todo::Models::Configuration.new.default_project }
+  let(:default_project_name) { Doto::Models::Configuration.new.default_project }
 
   it_behaves_like 'the project exists'
 
@@ -24,7 +24,7 @@ shared_examples 'the project is the default project' do
 end
 
 shared_examples 'the project is not the default project' do
-  let(:default_project_name) { Todo::Models::Configuration.new.default_project }
+  let(:default_project_name) { Doto::Models::Configuration.new.default_project }
 
   it_behaves_like 'the project exists'
 
@@ -35,7 +35,7 @@ shared_examples 'the project is not the default project' do
 end
 
 shared_examples 'the project is the current project' do
-  let(:current_project_name) { Todo::Models::Project.current_project_name }
+  let(:current_project_name) { Doto::Models::Project.current_project_name }
 
   it_behaves_like 'the project exists'
 
@@ -46,7 +46,7 @@ shared_examples 'the project is the current project' do
 end
 
 shared_examples 'the project is not the current project' do
-  let(:current_project_name) { Todo::Models::Project.current_project_name }
+  let(:current_project_name) { Doto::Models::Project.current_project_name }
 
   it_behaves_like 'the project exists'
 

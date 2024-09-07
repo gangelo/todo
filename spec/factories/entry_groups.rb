@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 FactoryBot.define do
-  factory :entry_group, class: 'Todo::Models::EntryGroup' do
+  factory :entry_group, class: 'Doto::Models::EntryGroup' do
     transient do
       # Use this if you want to control the entries added
       # to this entry group.
@@ -9,7 +9,7 @@ FactoryBot.define do
     end
 
     time { nil }
-    version { Todo::Models::EntryGroup::VERSION }
+    version { Doto::Models::EntryGroup::VERSION }
 
     # Use this trait if you want to simply add entries to
     # this entry group and do not care about the entry
@@ -28,7 +28,7 @@ FactoryBot.define do
 
     after(:build) do |entry_group, evaluator|
       evaluator.entries&.each_with_index do |entry, index|
-        raise 'Entry must be an instance of Todo::Models::Entry' unless entry.is_a?(Todo::Models::Entry)
+        raise 'Entry must be an instance of Doto::Models::Entry' unless entry.is_a?(Doto::Models::Entry)
 
         entry_group.entries[index] = entry.clone
       end

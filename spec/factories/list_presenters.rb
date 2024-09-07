@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 FactoryBot.define do
-  factory :list_presenter, class: 'Todo::Presenters::Project::ListPresenter' do
+  factory :list_presenter, class: 'Doto::Presenters::Project::ListPresenter' do
     options { {} }
 
     transient do
@@ -16,7 +16,7 @@ FactoryBot.define do
     after(:build) do |_list_presenter, evaluator|
       if evaluator.without_projects
         evaluator.project_names.each do |project_name|
-          Todo::Models::Project.exist?(project_name: project_name).tap do |exist|
+          Doto::Models::Project.exist?(project_name: project_name).tap do |exist|
             raise "without_projects is false and project '#{project_name}' already exist!" if exist
           end
         end

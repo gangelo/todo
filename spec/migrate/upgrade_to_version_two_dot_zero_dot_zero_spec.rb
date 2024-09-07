@@ -1,17 +1,17 @@
 # frozen_string_literal: true
 
 # All this preprocessing does is make the old entries folder "unsafe" to manipulate
-# by moving the entry group files to the '/tmp/todo/entries' folder. The configuration
+# by moving the entry group files to the '/tmp/doto/entries' folder. The configuration
 # file is also updated to point to the 'unsafe' entries folder so that the migration
 # process knows where to find the entry group files.
 def setup_unsafe_entries_folder(unsafe_entries_folder:)
-  config_path = Todo::Support::Fileable.config_path
+  config_path = Doto::Support::Fileable.config_path
   config_hash = read_configuration_version0!(config_path: config_path)
   entries_folder = unsafe_entries_folder
   FileUtils.mkdir_p(entries_folder)
   config_hash[:entries_folder] = entries_folder
   update_configuration_version0!(config_hash: config_hash, config_path: config_path)
-  from_folder = Todo::Support::Fileable.entries_folder
+  from_folder = Doto::Support::Fileable.entries_folder
   move_entry_group_files(from_folder: from_folder, to_folder: entries_folder)
 end
 
@@ -21,7 +21,7 @@ def move_entry_group_files(from_folder:, to_folder:)
   else
     FileUtils.mv(from_folder, to_folder)
   end
-  config_path = Todo::Support::Fileable.config_path
+  config_path = Doto::Support::Fileable.config_path
   config_hash = { entries_folder: File.join(destination_folder, File.basename(to_folder)) }
   update_configuration_version0!(config_hash: config_hash, config_path: config_path)
 end
@@ -37,7 +37,7 @@ def rename_entry_group_files(entries_folder:, file_strftime: '%m-%d-%Y.json')
 
     # We have to update the configuration to recognize the entries folder and new
     # file name format.
-    config_path = Todo::Support::Fileable.config_path
+    config_path = Doto::Support::Fileable.config_path
     config_hash = {
       entries_file_name: file_strftime,
       entries_folder: File.dirname(new_file_path)
@@ -46,7 +46,7 @@ def rename_entry_group_files(entries_folder:, file_strftime: '%m-%d-%Y.json')
   end
 end
 
-# RSpec.describe Todo::Migrate::UpgradeToVersionTwoDotZeroDotZero do
+# RSpec.describe Doto::Migrate::UpgradeToVersionTwoDotZeroDotZero do
 #   subject(:migration) { described_class.new }
 
 #   include_context 'with migrations'
@@ -64,7 +64,7 @@ end
 #     it 'creates the default color theme files' do
 #       subject.call
 #       expected_color_theme_names = %w[default cherry cloudy fozzy lemon matrix]
-#       expect(Todo::Models::ColorTheme.all.map(&:theme_name)).to match_array expected_color_theme_names
+#       expect(Doto::Models::ColorTheme.all.map(&:theme_name)).to match_array expected_color_theme_names
 #     end
 #   end
 
@@ -72,7 +72,7 @@ end
 #     it 'creates the expected entry group files' do
 #       subject.call
 #       expected_entry_group_times = %w[2023-06-15 2023-06-16 2023-06-17]
-#       expect(Todo::Models::EntryGroup.all&.map(&:time_yyyy_mm_dd)).to match_array(expected_entry_group_times)
+#       expect(Doto::Models::EntryGroup.all&.map(&:time_yyyy_mm_dd)).to match_array(expected_entry_group_times)
 #     end
 #   end
 
@@ -81,7 +81,7 @@ end
 #       subject.call
 #       expected_entry_group_times = %w[06-15-2023.json.old 06-16-2023.json.old 06-17-2023.json.old]
 #       expect(expected_entry_group_times.all? do |old_file|
-#         File.exist?(File.join(Todo::Support::Fileable.entries_folder, old_file))
+#         File.exist?(File.join(Doto::Support::Fileable.entries_folder, old_file))
 #       end).to be true
 #     end
 #   end
@@ -89,7 +89,7 @@ end
 #   shared_examples 'no entry group files are created' do
 #     it 'does not create any entry group files' do
 #       subject.call
-#       expect(Todo::Models::EntryGroup.any?).to be false
+#       expect(Doto::Models::EntryGroup.any?).to be false
 #     end
 #   end
 
@@ -98,11 +98,11 @@ end
 #       subject.call
 #       expected_entry_group_times.each do |time|
 #         entry_group_time = Time.parse(time)
-#         entry_group = Todo::Models::EntryGroup.find(time: entry_group_time)
+#         entry_group = Doto::Models::EntryGroup.find(time: entry_group_time)
 #         expect(entry_group.version).to eq end_migration_version
 #         expect(entry_group.time_equal?(other_time: entry_group_time)).to be true
 #         expect(entry_group.entries.count).to eq 2
-#         formatted_entry_group_time = entry_group_time.strftime(Todo::Support::TimeComparable::TIME_COMPARABLE_FORMAT_SPECIFIER)
+#         formatted_entry_group_time = entry_group_time.strftime(Doto::Support::TimeComparable::TIME_COMPARABLE_FORMAT_SPECIFIER)
 #         expect(entry_group.entries[0].description).to eq "#{formatted_entry_group_time} description 0"
 #         expect(entry_group.entries[1].description).to eq "#{formatted_entry_group_time} description 1"
 #       end
@@ -115,7 +115,7 @@ end
 
 #     context 'when the configuration file does not exist' do
 #       before do
-#         File.delete(Todo::Support::Fileable.config_path)
+#         File.delete(Doto::Support::Fileable.config_path)
 #       end
 
 #       it_behaves_like 'the color theme files are created'
@@ -123,16 +123,16 @@ end
 
 #       it 'creates a default configuration file' do
 #         migration.call
-#         expect(Todo::Models::Configuration.exist?).to be(true)
+#         expect(Doto::Models::Configuration.exist?).to be(true)
 #       end
 #     end
 
 #     context 'when the configuration file exists' do
 #       before do
-#         File.write(Todo::Support::Fileable.config_path, ConfigurationHelpers::CONFIGURATION_HASHES[start_migration_version.to_s].to_yaml)
+#         File.write(Doto::Support::Fileable.config_path, ConfigurationHelpers::CONFIGURATION_HASHES[start_migration_version.to_s].to_yaml)
 #       end
 
-#       let(:configuration) { Todo::Models::Versions::Configuration[version].read }
+#       let(:configuration) { Doto::Models::Versions::Configuration[version].read }
 
 #       it_behaves_like 'the color theme files are created'
 #       it_behaves_like 'the migration version file is updated to the latest migration version'
@@ -186,7 +186,7 @@ end
 #             setup_unsafe_entries_folder(unsafe_entries_folder: unsafe_entries_folder)
 #           end
 
-#           let(:destination_folder) { '/tmp/todo' }
+#           let(:destination_folder) { '/tmp/doto' }
 #           let(:unsafe_entries_folder) { File.join(destination_folder, 'entries') }
 #           let(:expected_console_output) do
 #             /.*Old entries folder "#{unsafe_entries_folder}".*This folder along with its old entry files may be deleted at your discretion.*/m
@@ -222,7 +222,7 @@ end
 
 #       context 'when the entry group files need to be renamed' do
 #         before do
-#           entries_folder = File.join(destination_folder, File.basename(Todo::Support::Fileable.entries_folder))
+#           entries_folder = File.join(destination_folder, File.basename(Doto::Support::Fileable.entries_folder))
 #           rename_entry_group_files(entries_folder: entries_folder)
 #         end
 

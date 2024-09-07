@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 FactoryBot.define do
-  factory :create_presenter, class: 'Todo::Presenters::Project::CreatePresenter' do
+  factory :create_presenter, class: 'Doto::Presenters::Project::CreatePresenter' do
     project_name { 'test' }
     description { nil }
     options { {} }

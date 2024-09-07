@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 FactoryBot.define do
-  factory :delete_by_number_presenter, class: 'Todo::Presenters::Project::DeleteByNumberPresenter' do
+  factory :delete_by_number_presenter, class: 'Doto::Presenters::Project::DeleteByNumberPresenter' do
     project_number { 2 }
     options { {} }
 
@@ -11,7 +11,7 @@ FactoryBot.define do
 
     trait :with_default_project do
       project_number do
-        Todo::Models::Project.default_project.project_number
+        Doto::Models::Project.default_project.project_number
       end
 
       with_project_number
@@ -20,7 +20,7 @@ FactoryBot.define do
     trait :with_project_number do
       after(:build) do |delete_by_number_presenter, evaluator|
         project_number = evaluator.project_number
-        project_metadata = Todo::Models::Project.project_metadata.find do |metadata|
+        project_metadata = Doto::Models::Project.project_metadata.find do |metadata|
           metadata[:project_number] == project_number.to_i
         end
         project_number = if project_metadata

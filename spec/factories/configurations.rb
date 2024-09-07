@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 FactoryBot.define do
-  factory :configuration, class: 'Todo::Models::Configuration' do
+  factory :configuration, class: 'Doto::Models::Configuration' do
     options { {} }
 
     transient do
@@ -12,7 +12,7 @@ FactoryBot.define do
       default_project { nil }
     end
 
-    initialize_with { Todo::Models::Configuration.new(options: options) }
+    initialize_with { Doto::Models::Configuration.new(options: options) }
 
     after(:create) do |configuration, evaluator|
       if evaluator.color_theme

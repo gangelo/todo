@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 FactoryBot.define do
-  factory :entry, class: 'Todo::Models::Entry' do
+  factory :entry, class: 'Doto::Models::Entry' do
     description { FFaker::Lorem.words(rand(2..80)).join(' ')[0...80] }
 
     trait :invalid do

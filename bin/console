@@ -9,7 +9,7 @@ if File.exist?('.env.development')
   Dotenv.load('.env.development')
 end
 
-require 'todo'
+require 'doto'
 require 'pry-byebug'
 
 # So we can use FactoryBot in the console.
@@ -17,10 +17,10 @@ require 'factory_bot'
 require 'ffaker'
 FactoryBot.find_definitions
 
-if Todo.env.development?
-  # This simply allows us to use a folder other than todo folder for the production
-  # release, so we don't mess with our current production todo folder.
-  module Todo
+if Doto.env.development?
+  # This simply allows us to use a folder other than doto folder for the production
+  # release, so we don't mess with our current production doto folder.
+  module Doto
     module Support
       module Fileable
         def root_folder
@@ -30,7 +30,7 @@ if Todo.env.development?
     end
   end
 
-  puts "ATTENTION: Todo root folder is: #{Todo::Support::Fileable.root_folder}!"
+  puts "ATTENTION: Doto root folder is: #{Doto::Support::Fileable.root_folder}!"
 end
 
 Pry.start

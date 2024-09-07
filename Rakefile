@@ -9,7 +9,7 @@ RuboCop::RakeTask.new
 
 desc 'Generate a migration timestamp'
 task :timestamp do
-  puts 'The below migration timestamp should be placed in the "lib/todo/migration/version.rb" file.'
+  puts 'The below migration timestamp should be placed in the "lib/doto/migration/version.rb" file.'
   puts Time.now.strftime('%Y%m%d%H%M%S')
 end
 

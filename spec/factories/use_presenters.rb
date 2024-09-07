@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 FactoryBot.define do
-  factory :use_presenter, class: 'Todo::Presenters::Project::UsePresenter' do
+  factory :use_presenter, class: 'Doto::Presenters::Project::UsePresenter' do
     project_name { 'test' }
     options { {} }
 
@@ -11,7 +11,7 @@ FactoryBot.define do
 
     trait :with_default_project do
       project_name do
-        Todo::Models::Project.default_project.project_name
+        Doto::Models::Project.default_project.project_name
       end
 
       with_project

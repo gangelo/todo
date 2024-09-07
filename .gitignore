@@ -16,11 +16,11 @@
 /.vscode/
 *.code-workspace
 
-#.todo
+#.doto
 scratch*.rb
 snippets.rb
 readme.txt
-todo.txt
+doto.txt
 
 .env.*
 /.development_home/*

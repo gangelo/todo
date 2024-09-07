@@ -11,7 +11,7 @@ shared_examples 'a message is displayed when the new project already exists' do
     end
 
     it 'displays the new project already exists message' do
-      expect(strip_escapes(Todo::Services::StdoutRedirectorService.call do
+      expect(strip_escapes(Doto::Services::StdoutRedirectorService.call do
         rename_view.render
       end.chomp)).to include(expected_error)
     end
@@ -21,7 +21,7 @@ end
 shared_examples 'errors are displayed when the new project name or description has errors' do
   context 'when the new project has errors' do
     let(:new_project) do
-      build(:project, project_name: 'New project', description: 'x' * (Todo::Models::Project::MAX_DESCRIPTION_LENGTH + 1))
+      build(:project, project_name: 'New project', description: 'x' * (Doto::Models::Project::MAX_DESCRIPTION_LENGTH + 1))
     end
 
     let(:expected_error) do
@@ -29,7 +29,7 @@ shared_examples 'errors are displayed when the new project name or description h
     end
 
     it 'displays the new project errors' do
-      expect(strip_escapes(Todo::Services::StdoutRedirectorService.call do
+      expect(strip_escapes(Doto::Services::StdoutRedirectorService.call do
         rename_view.render
       end.chomp)).to match(expected_error)
     end
@@ -45,7 +45,7 @@ shared_examples "the project is renamed when the user responds 'Y' to the confir
 
       it 'renames the project' do
         expected_output = "Renamed project \"#{project.project_name}\" to \"#{new_project.project_name}\"."
-        expect(strip_escapes(Todo::Services::StdoutRedirectorService.call { rename_view.render }.chomp)).to match(expected_output)
+        expect(strip_escapes(Doto::Services::StdoutRedirectorService.call { rename_view.render }.chomp)).to match(expected_output)
         expect(project.exist?).to be false
         expect(new_project.exist?).to be true
       end
@@ -61,7 +61,7 @@ shared_examples "the project is not renamed when the user responds 'n' to the co
 
     it 'does not rename the project' do
       expected_output = 'Cancelled.'
-      expect(strip_escapes(Todo::Services::StdoutRedirectorService.call { rename_view.render }.chomp)).to match(expected_output)
+      expect(strip_escapes(Doto::Services::StdoutRedirectorService.call { rename_view.render }.chomp)).to match(expected_output)
       expect(project.exist?).to be true
       expect(new_project.exist?).to be false
     end
@@ -78,7 +78,7 @@ shared_examples 'the error is displayed when an error is raised' do
 
     it 'displays the error' do
       expected_error = 'Boom!'
-      expect(strip_escapes(Todo::Services::StdoutRedirectorService.call { rename_view.render }.chomp)).to match(expected_error)
+      expect(strip_escapes(Doto::Services::StdoutRedirectorService.call { rename_view.render }.chomp)).to match(expected_error)
     end
   end
 end
@@ -101,7 +101,7 @@ shared_examples 'the project entry groups are moved to the new project' do
 
     it 'renames the project' do
       expected_output = "Renamed project \"#{project.project_name}\" to \"#{new_project.project_name}\"."
-      expect(strip_escapes(Todo::Services::StdoutRedirectorService.call { rename_view.render }.chomp)).to match(expected_output)
+      expect(strip_escapes(Doto::Services::StdoutRedirectorService.call { rename_view.render }.chomp)).to match(expected_output)
       expect(project.exist?).to be false
       expect(new_project.exist?).to be true
     end
@@ -109,7 +109,7 @@ shared_examples 'the project entry groups are moved to the new project' do
     it 'moves the entry groups to the new project' do
       rename_view.render
       new_project.use!
-      expect(Todo::Models::EntryGroup.all.count).to eq(entry_groups.count)
+      expect(Doto::Models::EntryGroup.all.count).to eq(entry_groups.count)
     end
   end
 end

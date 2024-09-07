@@ -1,4 +1,4 @@
-# lib/todo/cli.rb
+# lib/doto/cli.rb
 #
 # NOTE:
 #
@@ -30,9 +30,9 @@ en:
       long_desc: |
         Will add a TODO entry having DESCRIPTION to the date associated with the given OPTION.
 
-        $ todo add [-d DATE|MNEMONIC|-n|-t|-y] DESCRIPTION
+        $ doto add [-d DATE|MNEMONIC|-n|-t|-y] DESCRIPTION
 
-        $ todo a [-d DATE|MNEMONIC|-n|-t|-y] DESCRIPTION
+        $ doto a [-d DATE|MNEMONIC|-n|-t|-y] DESCRIPTION
 
         OPTIONS:
 
@@ -80,9 +80,9 @@ en:
       desc: info|i
       usage: Displays information about this TODO release
       info: |
-        Todo Info
+        Doto Info
         --------------------------------------------------
-                      Todo version: %{todo_version}
+                      Doto version: %{doto_version}
             Configuration version: %{configuration_version}
               Entry group version: %{entry_group_version}
               Color theme version: %{color_theme_version}

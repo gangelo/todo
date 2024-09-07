@@ -7,7 +7,7 @@ shared_examples 'the import file does not exist' do
     let(:import_file_path) { 'spec/fixtures/files/does-not-exist.csv' }
 
     it "displays the 'import file does not exist' message" do
-      expect(strip_escapes(Todo::Services::StdoutRedirectorService.call do
+      expect(strip_escapes(Doto::Services::StdoutRedirectorService.call do
         import_view.render
       end.chomp)).to include('Import file spec/fixtures/files/does-not-exist.csv does not exist.')
     end
@@ -21,7 +21,7 @@ shared_examples 'there is nothing to import' do
     let(:import_file_path) { 'spec/fixtures/files/nothing-to-import.csv' }
 
     it "displays the 'nothing to import' message" do
-      expect(strip_escapes(Todo::Services::StdoutRedirectorService.call do
+      expect(strip_escapes(Doto::Services::StdoutRedirectorService.call do
         import_view.render
       end.chomp)).to include('No entry groups to import.')
     end
@@ -46,7 +46,7 @@ shared_examples 'there is something to import' do
 
     context 'when all imports are successful' do
       it "displays the 'imported successfully' message" do
-        expect(strip_escapes(Todo::Services::StdoutRedirectorService.call do
+        expect(strip_escapes(Doto::Services::StdoutRedirectorService.call do
           import_view.render
         end.chomp)).to include(expected_output.chomp)
       end
@@ -59,7 +59,7 @@ shared_examples 'there is something to import' do
     end
 
     it "displays the 'nothing to import' message" do
-      expect(strip_escapes(Todo::Services::StdoutRedirectorService.call do
+      expect(strip_escapes(Doto::Services::StdoutRedirectorService.call do
         import_view.render
       end.chomp)).to include('Cancelled.')
     end
@@ -76,7 +76,7 @@ shared_examples 'the import raises an error' do
   let(:expected_output) { /The entry groups failed to import/ }
 
   it "displays the 'imported successfully' message" do
-    expect(strip_escapes(Todo::Services::StdoutRedirectorService.call do
+    expect(strip_escapes(Doto::Services::StdoutRedirectorService.call do
       import_view.render
     end.chomp)).to match(expected_output)
   end
@@ -99,7 +99,7 @@ shared_examples 'the import has errors' do
   let(:import_file_path) { 'spec/fixtures/files/import-with-duplicate-errors.csv' }
 
   it "displays the 'imported successfully' message" do
-    expect(strip_escapes(Todo::Services::StdoutRedirectorService.call do
+    expect(strip_escapes(Doto::Services::StdoutRedirectorService.call do
       import_view.render
     end.chomp)).to include(expected_output.chomp)
   end
@@ -123,7 +123,7 @@ shared_examples 'the project is overridden' do
 
     context 'when all imports are successful' do
       it "displays the 'imported successfully' message" do
-        expect(strip_escapes(Todo::Services::StdoutRedirectorService.call do
+        expect(strip_escapes(Doto::Services::StdoutRedirectorService.call do
           import_view.render
         end.chomp)).to include(expected_output.chomp)
       end

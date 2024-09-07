@@ -4,8 +4,8 @@ en:
       errors:
         temp_file_error: |
           Failed to open temporary file in editor '%{editor}'; the system error returned was: '%{status}'.
-          Check your EDITOR environment variable and the todo editor configuration option (run `todo config info`).
-          Run `todo help config` for more information.
+          Check your EDITOR environment variable and the doto editor configuration option (run `doto config info`).
+          Run `doto help config` for more information.
       messages:
         editing: "Editing entry group %{formatted_time}..."
     entry_group:

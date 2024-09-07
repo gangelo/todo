@@ -2,7 +2,7 @@
 
 source 'https://rubygems.org'
 
-# Specify your gem's dependencies in todo.gemspec
+# Specify your gem's dependencies in doto.gemspec
 gemspec
 
 gem 'bundler', '>= 2.5', '< 3.0'

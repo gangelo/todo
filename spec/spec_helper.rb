@@ -24,7 +24,7 @@ if File.exist?('.env.test')
   Dotenv.load('.env.test')
 end
 
-require 'todo'
+require 'doto'
 Dir[File.join(Dir.pwd, 'lib/migrate/**/*.rb')].each { |f| require f }
 Dir[File.join(Dir.pwd, 'spec/support/**/*.rb')].each { |f| require f }
 

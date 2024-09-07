@@ -1,4 +1,4 @@
-# lib/todo/subcommands
+# lib/doto/subcommands
 en:
   subcommands:
     browse:
@@ -8,27 +8,27 @@ en:
         long_desc: |
           Browse TODO entries for the current week.
 
-          $ todo browse w
+          $ doto browse w
 
-          $ todo browse w
+          $ doto browse w
       month:
         desc: month|m
         usage: Browse TODO entries for the current month
         long_desc: |
           Browse TODO entries for the current month.
 
-          $ todo browse month
+          $ doto browse month
 
-          $ todo browse m
+          $ doto browse m
       year:
         desc: year|y
         usage: Browse TODO entries for the current year
         long_desc: |
           Browse TODO entries for the current year.
 
-          $ todo browse year
+          $ doto browse year
 
-          $ todo browse y
+          $ doto browse y
       headers:
         browsing: Browsing TODO entries for %{of} (%{from} thru %{to})
         week_of: Week of %{week}
@@ -43,11 +43,11 @@ en:
 
           EXAMPLES
 
-          todo config delete
+          doto config delete
 
           NOTES
 
-          Deleting the todo configuration file will simply cause todo to use the default configuration options (`Todo::Models::Configuration::DEFAULT_CONFIGURATION`).
+          Deleting the doto configuration file will simply cause doto to use the default configuration options (`Doto::Models::Configuration::DEFAULT_CONFIGURATION`).
       info:
         desc: info
         usage: Displays information about this gem configuration
@@ -56,16 +56,16 @@ en:
 
           EXAMPLES
 
-          $ todo config info
+          $ doto config info
       init:
         desc: init
-        usage: Creates and initializes a .todo file in your home folder
+        usage: Creates and initializes a .doto file in your home folder
         long_desc: |
-          Creates and initializes a .todo file in your home folder (%{home_folder}) that may be edited.
+          Creates and initializes a .doto file in your home folder (%{home_folder}) that may be edited.
 
           EXAMPLES
 
-          $ todo config init
+          $ doto config init
 
           CONFIGURATION FILE ENTRIES
 
@@ -89,13 +89,13 @@ en:
 
           carry_over_entries_to_today:
 
-          Applicable to the `todo edit` command. Valid values are true|false. If true, when editing TODO entries for the first time on any given day (e.g. `todo edit today`), TODO entries from the previous day will be copied into the current editing session. If there are no TODO entries from the previous day, todo will search backwards up to 7 days to find a TODO date that has entries to copy. If after searching back 7 days, no TODO entries are found, the editor session will simply provide no previous TODO entries.
+          Applicable to the `doto edit` command. Valid values are true|false. If true, when editing TODO entries for the first time on any given day (e.g. `doto edit today`), TODO entries from the previous day will be copied into the current editing session. If there are no TODO entries from the previous day, doto will search backwards up to 7 days to find a TODO date that has entries to copy. If after searching back 7 days, no TODO entries are found, the editor session will simply provide no previous TODO entries.
 
           Default: false
 
           include_all:
 
-          Applicable to todo commands that display TODO date lists (e.g. `todo list` commands). Valid values are true|false. If true, all TODO dates within the specified range will be displayed, regardless of whether or not a particular date has entries. If false, only TODO dates between the first and last TODO dates that have entries will be displayed.
+          Applicable to doto commands that display TODO date lists (e.g. `doto list` commands). Valid values are true|false. If true, all TODO dates within the specified range will be displayed, regardless of whether or not a particular date has entries. If false, only TODO dates between the first and last TODO dates that have entries will be displayed.
 
           Default: false
 
@@ -118,9 +118,9 @@ en:
         long_desc: |
           Deletes the TODO entries for the given OPTIONS.
 
-          $ todo delete dates OPTIONS
+          $ doto delete dates OPTIONS
 
-          $ todo d dd OPTIONS
+          $ doto d dd OPTIONS
 
           OPTIONS:
 
@@ -138,15 +138,15 @@ en:
 
           The below will delete the TODO entries for the range of dates from 1/1 to 1/4 for the current year:
 
-          $ todo delete dates --from 1/1 --to +3
+          $ doto delete dates --from 1/1 --to +3
 
           This will delete the TODO entries for the range of dates from 1/2 to 1/5 for the year 2022:
 
-          $ todo delete dates --from 1/5/2022 --to -3
+          $ doto delete dates --from 1/5/2022 --to -3
 
           This (assuming "today" is 1/10) will delete the TODO entries for the last week 1/10 to 1/3 of the current year:
 
-          $ todo delete dates --from today --to -7
+          $ doto delete dates --from today --to -7
 
           This (assuming "today" is 5/23) will delete the TODO entries for the last week 5/16 to 5/22.
           This example simply illustrates the fact that you can use relative mnemonics for
@@ -155,40 +155,40 @@ en:
           While you can use relative mnemonics for both `--from` and `--to` options,
           there is always a more intuitive way. The below example basically deletes one week of TODO entries back 1 week from yesterday's date:
 
-          $ todo delete dates --from -7 --to +6
+          $ doto delete dates --from -7 --to +6
 
           The above can be accomplished MUCH easier by simply using the `yesterday` mnemonic...
 
           This (assuming "today" is 5/23) will delete the TODO entries back 1 week from yesterday's date 5/16 to 5/22:
 
-          $ todo delete dates --from yesterday --to -6
+          $ doto delete dates --from yesterday --to -6
       today:
         desc: today|n
         usage: Deletes the TODO entries for today
         long_desc: |
           Deletes the TODO entries for today.
 
-          $ todo delete today
+          $ doto delete today
 
-          $ todo delete n
+          $ doto delete n
       tomorrow:
         desc: tomorrow|t
         usage: Deletes the TODO entries for tomorrow
         long_desc: |
           Deletes the TODO entries for tomorrow.
 
-          $ todo delete tomorrow
+          $ doto delete tomorrow
 
-          $ todo delete t
+          $ doto delete t
       yesterday:
         desc: yesterday|y
         usage: Deletes the TODO entries for yesterday
         long_desc: |
           Deletes the TODO entries for yesterday.
 
-          $ todo delete yesterday
+          $ doto delete yesterday
 
-          $ todo delete y
+          $ doto delete y
       messages:
         deleted: Deleted %{count} entry group(s).
         cancelled: Cancelled.
@@ -224,9 +224,9 @@ en:
         long_desc: |
           Exports the TODO entries for the given OPTIONS.
 
-          $ todo export dates OPTIONS
+          $ doto export dates OPTIONS
 
-          $ todo x dd OPTIONS
+          $ doto x dd OPTIONS
 
           OPTIONS:
 
@@ -244,15 +244,15 @@ en:
 
           The below will export the TODO entries for the range of dates from 1/1 to 1/4 for the current year:
 
-          $ todo export dates --from 1/1 --to +3
+          $ doto export dates --from 1/1 --to +3
 
           This will export the TODO entries for the range of dates from 1/2 to 1/5 for the year 2022:
 
-          $ todo x dd --from 1/5/2022 --to -3
+          $ doto x dd --from 1/5/2022 --to -3
 
           This (assuming "today" is 1/10) will export the TODO entries for the last week 1/10 to 1/3 of the current year:
 
-          $ todo export dates --from today --to -7
+          $ doto export dates --from today --to -7
 
           This (assuming "today" is 5/23) will export the TODO entries for the last week 5/16 to 5/22.
           This example simply illustrates the fact that you can use relative mnemonics for
@@ -261,22 +261,22 @@ en:
           While you can use relative mnemonics for both `--from` and `--to` options,
           there is always a more intuitive way. The below example basically exports one week of TODO entries back 1 week from yesterday's date:
 
-          $ todo export dates --from -7 --to +6
+          $ doto export dates --from -7 --to +6
 
           The above can be accomplished MUCH easier by simply using the `yesterday` mnemonic...
 
           This (assuming "today" is 5/23) will delete the TODO entries back 1 week from yesterday's date 5/16 to 5/22:
 
-          $ todo x dd --from yesterday --to -6
+          $ doto x dd --from yesterday --to -6
       all:
         desc: all|a
         usage: Exports all TODO entries
         long_desc: |
           Exports all TODO entries.
 
-          $ todo export all
+          $ doto export all
 
-          $ todo x a
+          $ doto x a
       messages:
         exported: Export successful.
         exported_to: Entry groups exported to %{file_path}.
@@ -295,15 +295,15 @@ en:
         long_desc: |
           Imports the TODO entries for the given OPTIONS provided.
 
-          $ todo import dates OPTIONS
+          $ doto import dates OPTIONS
 
-          $ todo m dd OPTIONS
+          $ doto m dd OPTIONS
 
           OPTIONS:
 
           -o|--override true|false (default: false): If true, the import process will ignore the project name found in the import file and import the entries into the current project. If false, the import process will use the project name found in the import file.
 
-          -i|--import-file IMPORT_CVS_FILE: The IMPORT_CVS_FILE file to import. IMPORT_CVS_FILE should be a fully qualified path to a file that was previously created as a result of running `todo export`. see `todo help export`.
+          -i|--import-file IMPORT_CVS_FILE: The IMPORT_CVS_FILE file to import. IMPORT_CVS_FILE should be a fully qualified path to a file that was previously created as a result of running `doto export`. see `doto help export`.
 
           -m|--merge true|false (default: true): If true, imported entries will be added to the entry group if the entry group already exists. If false, the imported entries will replace all existing entries for the entry group if the entry group already exists. If the entry group does not exist, it will be created using the imported entries.
 
@@ -317,7 +317,7 @@ en:
 
           NOTES
 
-          Entry groups in the import file whose project name does not match the current project, will be ignored (see `todo project use`).
+          Entry groups in the import file whose project name does not match the current project, will be ignored (see `doto project use`).
 
           If the `--override` option is used, the import process will ignore the project name found in the import file and import the entries into the current project.
 
@@ -327,15 +327,15 @@ en:
 
           The below will import the TODO entries for the range of dates from 1/1 to 1/4 for the current year, from the import file, and replace all the entries for the respective entry groups imported:
 
-          $ todo import dates --from 1/1 --to +3 -i /path/to/import.csv -m false
+          $ doto import dates --from 1/1 --to +3 -i /path/to/import.csv -m false
 
           This will import the TODO entries for the range of dates from 1/2 to 1/5 for the year 2022, from the import file, and merge all the entries for the respective entry groups imported:
 
-          $ todo m dd --from 1/5/2022 --to -3 -i /path/to/import.csv
+          $ doto m dd --from 1/5/2022 --to -3 -i /path/to/import.csv
 
           This (assuming "today" is 1/10) will import the TODO entries for the last week 1/10 to 1/3 of the current year, from the import file, and merge all the entries for the respective entry groups imported:
 
-          $ todo import dates --from today --to -7 -i /path/to/import.csv -m true
+          $ doto import dates --from today --to -7 -i /path/to/import.csv -m true
 
           This (assuming "today" is 5/23) will import the TODO entries for the last week 5/16 to 5/22.
           This example simply illustrates the fact that you can use relative mnemonics for
@@ -344,38 +344,38 @@ en:
           While you can use relative mnemonics for both `--from` and `--to` options,
           there is always a more intuitive way. The below example basically imports one week of TODO entries back 1 week from yesterday's date, from the import file, and merge all the entries for the respective entry groups imported:
 
-          $ todo import dates --from -7 --to +6 -i /path/to/import.csv
+          $ doto import dates --from -7 --to +6 -i /path/to/import.csv
 
           The above can be accomplished MUCH easier by simply using the `yesterday` mnemonic...
 
           This (assuming "today" is 5/23) will import the TODO entries back 1 week from yesterday's date 5/16 to 5/22, from the import file, and merge all the entries for the respective entry groups imported:
 
-          $ todo m dd --from yesterday --to -6 -i /path/to/import.csv
+          $ doto m dd --from yesterday --to -6 -i /path/to/import.csv
 
           This (assuming the current year is 2024) will import the TODO entries for 1/1/2024 to 3/15/2024 from the import file, and ignore the project name found in the import file and import the entries into the current project:
 
-          $ todo m dd -f 1/1 -t 3/15 -o true -i /path/to/import.csv
+          $ doto m dd -f 1/1 -t 3/15 -o true -i /path/to/import.csv
       all:
         desc: all|a OPTIONS
         usage: Imports all TODO entries from a given TODO export .csv file
         long_desc: |
           Imports all TODO entries from a given TODO export .csv file.
 
-          $ todo import all OPTIONS
+          $ doto import all OPTIONS
 
-          $ todo m a OPTIONS
+          $ doto m a OPTIONS
 
           OPTIONS:
 
           -o|--override true|false (default: false): If true, the import process will ignore the project name found in the import file and import the entries into the current project. If false, the import process will use the project name found in the import file.
 
-          -i|--import-file IMPORT_CVS_FILE: The IMPORT_CVS_FILE file to import. IMPORT_CVS_FILE should be a fully qualified path to a file that was previously created as a result of running `todo export`. see `todo help export`.
+          -i|--import-file IMPORT_CVS_FILE: The IMPORT_CVS_FILE file to import. IMPORT_CVS_FILE should be a fully qualified path to a file that was previously created as a result of running `doto export`. see `doto help export`.
 
           -m|--merge true|false (default: true): If true, imported entries will be added to the entry group if the entry group already exists. If false, the imported entries will replace all existing entries for the entry group if the entry group already exists. If the entry group does not exist, it will be created using the imported entries.
 
           NOTES
 
-          Entry groups in the import file whose project name does not match the current project, will be ignored (see `todo project use`).
+          Entry groups in the import file whose project name does not match the current project, will be ignored (see `doto project use`).
 
           If the `--override` option is used, the import process will ignore the project name found in the import file and import the entries into the current project.
 
@@ -383,15 +383,15 @@ en:
 
           This will import all the TODO entries from the import file, and replace all the entries for the respective entry groups imported:
 
-          $ todo import all -m false -i /path/to/import.csv
+          $ doto import all -m false -i /path/to/import.csv
 
           This will import all the TODO entries from the import file, and merge all the entries for the respective entry groups imported:
 
-          $ todo import all -i /path/to/import.csv
+          $ doto import all -i /path/to/import.csv
 
           This will import all the TODO entries from the import file, and ignore the project name found in the import file and import the entries into the current project:
 
-          $ todo import all -o true -i /path/to/import.csv
+          $ doto import all -o true -i /path/to/import.csv
       messages:
         import_success: Entry group for %{date} imported successfully.
         import_error: "Entry group for %{date} imported with an error: %{error}"
@@ -422,13 +422,13 @@ en:
         long_desc: |
           Displays the TODO entries for the given OPTIONS.
 
-          $ todo list dates OPTIONS
+          $ doto list dates OPTIONS
 
-          $ todo l dd OPTIONS
+          $ doto l dd OPTIONS
 
           OPTIONS:
 
-          -a|--include-all true|false: If true, all TODO dates within the specified range will be displayed. If false, TODO dates between the first and last TODO dates that have NO entries will NOT be displayed.. The default is taken from the todo configuration setting :include_all, see `todo config info`.
+          -a|--include-all true|false: If true, all TODO dates within the specified range will be displayed. If false, TODO dates between the first and last TODO dates that have NO entries will NOT be displayed.. The default is taken from the doto configuration setting :include_all, see `doto config info`.
 
           -f|--from DATE|MNEMONIC: The DATE or MNEMONIC that represents the start of the range of TODO dates to display. If a relative mnemonic is used (+/-n, e.g +1, -1, etc.), the date calculated will be relative to the current date (e.g. `<MNEMONIC>.to_i.days.from_now(Time.now)`).
 
@@ -446,15 +446,15 @@ en:
 
           The below will display the TODO entries for the range of dates from 1/1 to 1/4 for the current year:
 
-          $ todo list dates --from 1/1 --to +3
+          $ doto list dates --from 1/1 --to +3
 
           This will display the TODO entries for the range of dates from 1/2 to 1/5 for the year 2022:
 
-          $ todo list dates --from 1/5/2022 --to -3
+          $ doto list dates --from 1/5/2022 --to -3
 
           This (assuming "today" is 1/10) will display the TODO entries for the last week 1/10 to 1/3 of the current year:
 
-          $ todo list dates --from today --to -7
+          $ doto list dates --from today --to -7
 
           This (assuming "today" is 5/23) will display the TODO entries for the last week 5/16 to 5/22.
           This example simply illustrates the fact that you can use relative mnemonics for
@@ -464,50 +464,50 @@ en:
           there is always a more intuitive way. The below example basically lists one week
           of TODO entries back 1 week from yesterday's date:
 
-          $ todo list dates --from -7 --to +6
+          $ doto list dates --from -7 --to +6
 
           The above can be accomplished MUCH easier by simply using the `yesterday` mnemonic...
 
           This (assuming "today" is 5/23) will display the TODO entries back 1 week from yesterday's date 5/16 to 5/22:
 
-          $ todo list dates --from yesterday --to -6
+          $ doto list dates --from yesterday --to -6
       today:
         desc: today|n
         usage: Displays the TODO entries for today
         long_desc: |
           Displays the TODO entries for today.
 
-          $ todo list today
+          $ doto list today
 
-          $ todo list n
+          $ doto list n
       tomorrow:
         desc: tomorrow|t
         usage: Displays the TODO entries for tomorrow
         long_desc: |
           Displays the TODO entries for tomorrow.
 
-          $ todo list tomorrow
+          $ doto list tomorrow
 
-          $ todo list t
+          $ doto list t
       yesterday:
         desc: yesterday|y
         usage: Displays the TODO entries for yesterday
         long_desc: |
           Displays the TODO entries for yesterday.
 
-          $ todo list yesterday
+          $ doto list yesterday
 
-          $ todo list y
+          $ doto list y
     project:
       create:
         desc: create|c PROJECT_NAME [PROJECT_DESCRIPTION]
-        usage: Creates a todo project using the given PROJECT_NAME and optional PROJECT_DESCRIPTION
+        usage: Creates a doto project using the given PROJECT_NAME and optional PROJECT_DESCRIPTION
         long_desc: |
-          Creates a todo project using the given PROJECT_NAME and optional PROJECT_DESCRIPTION.
+          Creates a doto project using the given PROJECT_NAME and optional PROJECT_DESCRIPTION.
 
-          todo project create PROJECT_NAME [PROJECT_DESCRIPTION]
+          doto project create PROJECT_NAME [PROJECT_DESCRIPTION]
 
-          todo p c PROJECT_NAME [PROJECT_DESCRIPTION]
+          doto p c PROJECT_NAME [PROJECT_DESCRIPTION]
 
           PROJECT_NAME
 
@@ -519,13 +519,13 @@ en:
 
           EXAMPLES
 
-          $ todo project create "My project" "My project description"
+          $ doto project create "My project" "My project description"
 
-          $ todo p c "My project" "My project description"
+          $ doto p c "My project" "My project description"
 
           The below example will create a project called "Alpa" with the description "Alpa project".
 
-          $ todo p c "Alpha"
+          $ doto p c "Alpha"
         messages:
           created: Created project "%{project_name}".
         prompts:
@@ -543,9 +543,9 @@ en:
         long_desc: |
           Permanently deletes the TODO project indicated by given option PROJECT_NAME or PROJECT_NUMBER.
 
-          todo project delete [PROJECT_NAME|PROJECT_NUMBER]
+          doto project delete [PROJECT_NAME|PROJECT_NUMBER]
 
-          todo p d [PROJECT_NAME|PROJECT_NUMBER]
+          doto p d [PROJECT_NAME|PROJECT_NUMBER]
 
           PROJECT_NAME
 
@@ -553,7 +553,7 @@ en:
 
           PROJECT_NUMBER
 
-          The number of the project to delete. If PROJECT_NUMBER is used, the project equating to the nth project in the list of projects will be deleted (see `todo project list`).
+          The number of the project to delete. If PROJECT_NUMBER is used, the project equating to the nth project in the list of projects will be deleted (see `doto project list`).
 
           NOTES
 
@@ -561,21 +561,21 @@ en:
 
           EXAMPLES
 
-          $ todo project delete "My project"
+          $ doto project delete "My project"
 
-          $ todo p d "My project"
+          $ doto p d "My project"
 
-          The below examples delete the project equating to the nth project in the list of projects (see `todo project list`).
+          The below examples delete the project equating to the nth project in the list of projects (see `doto project list`).
 
-          $ todo project delete 2
+          $ doto project delete 2
 
-          $ todo p d 2
+          $ doto p d 2
 
           The below examples delete the current, default project.
 
-          $ todo project delete
+          $ doto project delete
 
-          $ todo p d
+          $ doto p d
         messages:
           deleted: Deleted project "%{project_name}".
         prompts:
@@ -589,24 +589,24 @@ en:
         long_desc: |
           Lists all the TODO projects.
 
-          todo project list
+          doto project list
 
-          todo p l
+          doto p l
 
           EXAMPLES
 
-          $ todo project list
+          $ doto project list
 
-          $ todo p l
+          $ doto p l
       rename:
         desc: rename|r PROJECT_NAME|PROJECT_NUMBER NEW_PROJECT_NAME [NEW_PROJECT_DESCRIPTION]
-        usage: Renames a todo project using the given PROJECT_NAME or PROJECT_NUMBER, NEW_PROJECT_NAME and optional NEW_PROJECT_DESCRIPTION
+        usage: Renames a doto project using the given PROJECT_NAME or PROJECT_NUMBER, NEW_PROJECT_NAME and optional NEW_PROJECT_DESCRIPTION
         long_desc: |
-          Renames a todo project using the given PROJECT_NAME or PROJECT_NUMBER, NEW_PROJECT_NAME and optional NEW_PROJECT_DESCRIPTION
+          Renames a doto project using the given PROJECT_NAME or PROJECT_NUMBER, NEW_PROJECT_NAME and optional NEW_PROJECT_DESCRIPTION
 
-          todo project rename PROJECT_NAME|PROJECT_NUMBER NEW_PROJECT_NAME [NEW_PROJECT_DESCRIPTION]
+          doto project rename PROJECT_NAME|PROJECT_NUMBER NEW_PROJECT_NAME [NEW_PROJECT_DESCRIPTION]
 
-          todo p r PROJECT_NAME|PROJECT_NUMBER NEW_PROJECT_NAME [NEW_PROJECT_DESCRIPTION]
+          doto p r PROJECT_NAME|PROJECT_NUMBER NEW_PROJECT_NAME [NEW_PROJECT_DESCRIPTION]
 
           PROJECT_NAME
 
@@ -614,7 +614,7 @@ en:
 
           PROJECT_NUMBER
 
-          The number of the project to rename. If PROJECT_NUMBER is used, the project equating to the nth project in the list of projects will be renamed (see `todo project list`).
+          The number of the project to rename. If PROJECT_NUMBER is used, the project equating to the nth project in the list of projects will be renamed (see `doto project list`).
 
           NEW_PROJECT_NAME
 
@@ -626,17 +626,17 @@ en:
 
           EXAMPLES
 
-          $ todo project rename "My Project" "My New Project" "My new project description"
+          $ doto project rename "My Project" "My New Project" "My new project description"
 
-          $ todo p r "My Project" "My New Project" "My new project description"
+          $ doto p r "My Project" "My New Project" "My new project description"
 
-          $ todo project rename 1 "My New Project" "My new project description"
+          $ doto project rename 1 "My New Project" "My new project description"
 
-          $ todo p r 1 "My New Project" "My new project description"
+          $ doto p r 1 "My New Project" "My new project description"
 
           The below example will rename the project called "Alpa" with the "Beta" and add the description "Beta project".
 
-          $ todo p r Alpha Beta
+          $ doto p r Alpha Beta
         messages:
           # created: Created project "%{project_name}".
           new_project_already_exists: A project for new project name "%{new_project_name}" already exists.
@@ -653,9 +653,9 @@ en:
         long_desc: |
           Selects the TODO project to use, based on the given PROJECT_NAME or PROJECT_NUMBER.
 
-          todo project use [OPTIONS] [PROJECT_NAME|PROJECT_NUMBER]
+          doto project use [OPTIONS] [PROJECT_NAME|PROJECT_NUMBER]
 
-          todo p u [OPTIONS] [PROJECT_NAME|PROJECT_NUMBER]
+          doto p u [OPTIONS] [PROJECT_NAME|PROJECT_NUMBER]
 
           OPTIONS:
 
@@ -667,37 +667,37 @@ en:
 
           PROJECT_NUMBER
 
-          The number of the project to use. If PROJECT_NUMBER is used, the project equating to the nth project in the list of projects will be used (see `todo project list`).
+          The number of the project to use. If PROJECT_NUMBER is used, the project equating to the nth project in the list of projects will be used (see `doto project list`).
 
           NOTES
 
-          PROJECT_NAME|PROJECT_NUMBER are optional. The project name or project number of the project to use. If PRONECT_NAME is not provided, the default project will be used. If PROJECT_NUMBER is used, the project equating to the nth project in the list of projects will be used (see `todo project list`).
+          PROJECT_NAME|PROJECT_NUMBER are optional. The project name or project number of the project to use. If PRONECT_NAME is not provided, the default project will be used. If PROJECT_NUMBER is used, the project equating to the nth project in the list of projects will be used (see `doto project list`).
 
           EXAMPLES
 
           These will use the default project.
 
-          $ todo project use
+          $ doto project use
 
-          $ todo p u
+          $ doto p u
 
           These will use the project named "My project".
 
-          $ todo project use "My project"
+          $ doto project use "My project"
 
-          $ todo p u "My project"
+          $ doto p u "My project"
 
           These will use the 2nd project in the list of projects.
 
-          $ todo project use 2
+          $ doto project use 2
 
-          $ todo p u 2
+          $ doto p u 2
 
           These will use "Project A" and make it the default project if it is not the default project.
 
-          $ todo project use --default "Project A"
+          $ doto project use --default "Project A"
 
-          $ todo p u -d "Project A"
+          $ doto p u -d "Project A"
         messages:
           using_project: Now using project "%{project_name}".
         prompts:
@@ -717,15 +717,15 @@ en:
     theme:
       create:
         desc: create THEME_NAME [OPTIONS]
-        usage: Creates a todo color theme named THEME_NAME
+        usage: Creates a doto color theme named THEME_NAME
         long_desc: |
-          Creates a todo color theme named THEME_NAME in the %{themes_folder} folder.
+          Creates a doto color theme named THEME_NAME in the %{themes_folder} folder.
 
-          $ todo create THEME_NAME [-d|--description DESCRIPTION]
+          $ doto create THEME_NAME [-d|--description DESCRIPTION]
 
           OPTIONS:
 
-          -d|--description DESCRIPTION: Creates the todo color theme with having DESCRIPTION as the color theme description.
+          -d|--description DESCRIPTION: Creates the doto color theme with having DESCRIPTION as the color theme description.
 
           DESCRIPTION
 
@@ -739,11 +739,11 @@ en:
           cancelled: Cancelled.
       delete:
         desc: delete THEME_NAME
-        usage: Deletes the existing todo color theme THEME_NAME
+        usage: Deletes the existing doto color theme THEME_NAME
         long_desc: |
-          Deletes the existing todo color theme THEME_NAME in the %{themes_folder} folder.
+          Deletes the existing doto color theme THEME_NAME in the %{themes_folder} folder.
 
-          $ todo theme delete THEME_NAME
+          $ doto theme delete THEME_NAME
         prompts:
           delete_theme: Delete color theme "%{theme_name}"?
         errors:
@@ -753,18 +753,18 @@ en:
           deleted: Deleted color theme "%{theme_name}".
       list:
         desc: list
-        usage: Lists the available todo color themes.
+        usage: Lists the available doto color themes.
         long_desc: |
-          Lists the available todo color themes in the %{themes_folder} folder.
+          Lists the available doto color themes in the %{themes_folder} folder.
 
-          $ todo theme list
+          $ doto theme list
       use:
         desc: use [THEME_NAME]
-        usage: Sets the todo color theme to THEME_NAME
+        usage: Sets the doto color theme to THEME_NAME
         long_desc: |
-          Sets the todo color theme to THEME_NAME.
+          Sets the doto color theme to THEME_NAME.
 
-          $ todo theme use [THEME_NAME]
+          $ doto theme use [THEME_NAME]
 
           NOTES
 
@@ -775,11 +775,11 @@ en:
           using_color_theme: Using color theme "%{theme_name}".
       show:
         desc: show THEME_NAME
-        usage: Displays the todo color theme THEME_NAME
+        usage: Displays the doto color theme THEME_NAME
         long_desc: |
-          Displays the todo color theme THEME_NAME.
+          Displays the doto color theme THEME_NAME.
 
-          $ todo theme show THEME_NAME
+          $ doto theme show THEME_NAME
       generic:
         color_theme: "%{theme_name} color theme"
         errors:

@@ -1,7 +1,7 @@
 ---
-name: todo feature request
-about: Suggest an idea for todo
-title: "[ENHANCEMENT] todo: I think it would be cool if todo..."
+name: doto feature request
+about: Suggest an idea for doto
+title: "[ENHANCEMENT] doto: I think it would be cool if doto..."
 labels: 'feature-request'
 assignees: 'gangelo'
 

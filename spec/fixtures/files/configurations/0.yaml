@@ -2,4 +2,4 @@
 editor: nano
 entries_display_order: desc
 entries_file_name: "%Y-%m-%d.json"
-entries_folder: "./todo/entries"
+entries_folder: "./doto/entries"
